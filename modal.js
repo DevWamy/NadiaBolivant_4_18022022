@@ -27,9 +27,10 @@ function launchModal() {
 
 // Déclaration expressions régulières à des fins de vérifications de champs
 
-const regexName = /^[a-zA-Z0-9éè^]{2,}$/;
-const regexMail = /^[a-z0-9.-_]+@[a-z0-9.-_]{2,}\.[a-z]{2,4}$/;
-const regexQuantity = /^[0-9]$/;
+const regexName = /^[a-zA-ZàâäèéêëîïôöùûüÿçæœÀÂÄÉÈÊËÎÏÔÖÙÛÜÇÆŒ\-]{2,}$/;
+const regexMail = /^[a-z0-9.àâäèéêëîïôöùûüÿçæœ\-_]+@[a-z0-9.\-_]{2,}\.[a-z]{2,4}$/;
+const regexQuantity = /^([1-9][0-9]{0,1}|100)$/;
+
 
 
 //Validation des formats en input
@@ -39,7 +40,7 @@ document.getElementById("first").addEventListener("input", function(){
   if (regexName.test(this.value) === false) {
     this.style.color = 'red';
     document.getElementById('erreurName').style.display = 'block';
-    document.getElementById('erreurName').innerHTML = 'Veuillez entrer 2 caractères ou plus pour le champ du prénom !';
+    document.getElementById('erreurName').innerHTML = 'Veuillez entrer 2 caractères minimum, sans chiffres, ni caractères spéciaux pour le champ du prénom !';
 
   }
   else if (regexName.test(this.value) === true) {
@@ -59,7 +60,7 @@ document.getElementById("last").addEventListener("input", function(){
   if (regexName.test(this.value) === false) {
     this.style.color = 'red';
     document.getElementById('erreurLastName').style.display = 'block';
-    document.getElementById('erreurLastName').innerHTML = 'Veuillez entrer 2 caractères ou plus pour le champ du nom !';
+    document.getElementById('erreurLastName').innerHTML = 'Veuillez entrer 2 caractères minimum, sans chiffres, ni caractères spéciaux pour le champ du nom !';
 
   }
   else if (regexName.test(this.value) === true) {
@@ -117,7 +118,7 @@ document.getElementById("quantity").addEventListener("input", function(){
   if (regexQuantity.test(this.value) === false) {
     this.style.color = 'red';
     document.getElementById('erreurQuantity').style.display = 'block';
-    document.getElementById('erreurQuantity').innerHTML = 'Veuillez entrer 2 caractères ou plus pour le champ du nom !';
+    document.getElementById('erreurQuantity').innerHTML = 'Veuillez entrer une valeur numérique entre 1 et 100 !';
 
   }
   else if (regexQuantity.test(this.value) === true) {
