@@ -1,5 +1,6 @@
+// Fonction pour chargement du navigateur
 function editNav() {
-  var x = document.getElementById("myTopnav");
+ var x = document.getElementById("myTopnav");
   if (x.className === "topnav") {
     x.className += " responsive";
   } else {
@@ -8,17 +9,18 @@ function editNav() {
 }
 
 // Eléments du DOM
-
 const modalbg = document.querySelector(".bground");
 const modalBtn = document.querySelectorAll(".modal-btn");
 const formData = document.querySelectorAll(".formData");
+const navBtn = document.getElementById("burger-btn")
+
+// Apparition Nav au clic sur le burger
+navBtn.onclick = editNav;
 
 // Chargement de l'évènement modal
-
 modalBtn.forEach((btn) => btn.addEventListener("click", launchModal));
 
 // Chargement du formulaire modal
-
 function launchModal() {
   document.getElementById('formCloseContent').style.display = 'none';
   document.getElementById('modalClose').style.display = 'block';
@@ -26,14 +28,13 @@ function launchModal() {
 }
 
 // Déclaration expressions régulières à des fins de vérifications de champs
-
-const regexName = /^[a-zA-ZàâäèéêëîïôöùûüÿçæœÀÂÄÉÈÊËÎÏÔÖÙÛÜÇÆŒ\-]{2,}$/;
-const regexMail = /^[a-z0-9.àâäèéêëîïôöùûüÿçæœ\-_]+@[a-z0-9.\-_]{2,}\.[a-z]{2,4}$/;
+const regexName = /^[a-zA-ZàâäèéêëîïôöùûüÿçæœÀÂÄÉÈÊËÎÏÔÖÙÛÜÇÆŒ'\-]{2,}$/;
+const regexMail = /^[a-z0-9.àâäèéêëîïôöùûüÿçæœ'\-_]+@[a-z0-9.\-_]{2,}\.[a-z]{2,4}$/;
 const regexQuantity = /^([1-9][0-9]{0,1}|100)$/;
 
-
-
 //Validation des formats en input
+
+// Vérification du prénom
 
 //document.forms["reserve"]["first"].addEventListener("submit", function(event) { Possible si on veut une syntaxe sans ID
 document.getElementById("first").addEventListener("input", function(){
@@ -56,6 +57,7 @@ document.getElementById("first").addEventListener("input", function(){
 
 });
 
+//Vérification du nom
 document.getElementById("last").addEventListener("input", function(){
   if (regexName.test(this.value) === false) {
     this.style.color = 'red';
@@ -70,11 +72,11 @@ document.getElementById("last").addEventListener("input", function(){
   }
   else{
     document.getElementById('erreurLastName').style.display = 'none';
-    //document.getElementById('erreurLastName') = "";
   }
 
 });
 
+//Vérification de l'email
 document.getElementById("email").addEventListener("input", function(){
   if (regexMail.test(this.value) === false) {
     this.style.color = 'red';
@@ -90,14 +92,14 @@ document.getElementById("email").addEventListener("input", function(){
   }
   else{
     document.getElementById('erreurMail').style.display = 'none';
-    //document.getElementById('erreurLastName') = "";
   }
 
 });
 
+// Vérification de la date de naissance
 document.getElementById("birthdate").addEventListener("input", function(){
   if (!this.value) {
-    this.style.border = '0.1rem solid red';
+    this.style.border = '3.2px solid red';
     document.getElementById('erreurBirth').style.display = 'block';
     document.getElementById('erreurBirth').innerHTML = 'Veuillez entrer une date !';
 
@@ -109,11 +111,11 @@ document.getElementById("birthdate").addEventListener("input", function(){
   }
   else{
     document.getElementById('erreurBirth').style.display = 'none';
-    //document.getElementById('erreurLastName') = "";
   }
 
 });
 
+// Vérification du nombre de villes
 document.getElementById("quantity").addEventListener("input", function(){
   if (regexQuantity.test(this.value) === false) {
     this.style.color = 'red';
@@ -129,13 +131,11 @@ document.getElementById("quantity").addEventListener("input", function(){
   }
   else{
     document.getElementById('erreurQuantity').style.display = 'none';
-    //document.getElementById('erreurLastName') = "";
   }
 
 });
 
-//Validation des champs en submit
-
+//Validation des champs soumis
 document.forms["reserve"].addEventListener("submit", function(event) {
 
   let error;
@@ -162,7 +162,7 @@ document.forms["reserve"].addEventListener("submit", function(event) {
   for (let i = 0;  i < this.length; i++){
     if(!this[i].value){
         error = 'Veuillez renseigner tous les champs';
-        this[i].style.border = '0.2rem solid red';
+        this[i].style.border = '3.2px solid red';
         valid = false;
         break;
     }
@@ -183,7 +183,6 @@ document.forms["reserve"].addEventListener("submit", function(event) {
 
 
 //Contournement afin d'éviter l'utilisation de span
-
 const crossClose = document.getElementById('formClose');
 const formulaireClose = document.getElementById('bgroundClose');
 

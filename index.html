@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="modal.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=DM+Sans"/>
+    <link href="./img/gameon_favicon.png" rel="icon">
   </head>
 
   <!--BODY-->
@@ -23,7 +24,7 @@
           <a href="#"><span>À propos</span></a>
           <a href="#"><span>Contact</span></a>
           <a href="#"><span>Évènements passés</span></a>
-          <a href="javascript:void(0);" class="icon" onclick="editNav()">
+          <a href="#" id="burger-btn" class="icon">
             <i class="fa fa-bars"></i>
           </a>
         </nav>
@@ -53,7 +54,8 @@
   <!--THANKS MODAL-->
       <div class="bground" id="bgroundClose">
         <div class="content">
-          <div class="close" id="formClose"></div>
+          <div class="close" id="formClose">
+          </div>
           <div class="content content--close" id="formCloseContent">
             <a href="index.html" class="close" id="closingMessage"></a>
             <p>Merci pour <br> votre inscription</p>
