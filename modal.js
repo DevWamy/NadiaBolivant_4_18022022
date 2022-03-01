@@ -34,64 +34,48 @@ const regexQuantity = /^([1-9][0-9]{0,1}|100)$/;
 
 //Validation des formats en input
 
-// Vérification du prénom
+// Vérification des noms et prénoms
+const validateIdentity =  (inputName, errorField, errorMessage) => {
+  document.getElementById(inputName).addEventListener("input", function(){
+    if (regexName.test(this.value) === false) {
+      this.style.color = 'red';
+      document.getElementById(errorField).style.display = 'block';
+      document.getElementById(errorField).innerHTML = errorMessage;
+  
+    }
+    else if (regexName.test(this.value) === true) {
+      document.getElementById(errorField).style.display = 'none';
+      this.style.border = 'unset';
+      this.style.color = 'green';
+  
+    }
+    else{
+      document.getElementById(errorField).style.display = 'none';
+      //errorName = ""; pour réinitialiser le contenu du message d'erreur
+    }
+  
+  });
+}
+validateIdentity("first", "errorName", "Veuillez entrer 2 caractères minimum, sans chiffres, ni caractères spéciaux pour le champ du prénom !");
+validateIdentity("last", "errorLastName", "Veuillez entrer 2 caractères minimum, sans chiffres, ni caractères spéciaux pour le champ du nom !")
 
-//document.forms["reserve"]["first"].addEventListener("submit", function(event) { Possible si on veut une syntaxe sans ID
-document.getElementById("first").addEventListener("input", function(){
-  if (regexName.test(this.value) === false) {
-    this.style.color = 'red';
-    document.getElementById('erreurName').style.display = 'block';
-    document.getElementById('erreurName').innerHTML = 'Veuillez entrer 2 caractères minimum, sans chiffres, ni caractères spéciaux pour le champ du prénom !';
-
-  }
-  else if (regexName.test(this.value) === true) {
-    document.getElementById('erreurName').style.display = 'none';
-    this.style.border = 'unset';
-    this.style.color = 'green';
-
-  }
-  else{
-    document.getElementById('erreurName').style.display = 'none';
-    //erreurName = ""; pour réinitialiser le contenu du message d'erreur
-  }
-
-});
-
-//Vérification du nom
-document.getElementById("last").addEventListener("input", function(){
-  if (regexName.test(this.value) === false) {
-    this.style.color = 'red';
-    document.getElementById('erreurLastName').style.display = 'block';
-    document.getElementById('erreurLastName').innerHTML = 'Veuillez entrer 2 caractères minimum, sans chiffres, ni caractères spéciaux pour le champ du nom !';
-
-  }
-  else if (regexName.test(this.value) === true) {
-    document.getElementById('erreurLastName').style.display = 'none';
-    this.style.border = 'unset';
-    this.style.color = 'green';
-  }
-  else{
-    document.getElementById('erreurLastName').style.display = 'none';
-  }
-
-});
 
 //Vérification de l'email
 document.getElementById("email").addEventListener("input", function(){
   if (regexMail.test(this.value) === false) {
     this.style.color = 'red';
-    document.getElementById('erreurMail').style.display = 'block';
-    document.getElementById('erreurMail').innerHTML = 'Veuillez entrer une adresse mail valide !';
+    document.getElementById('errorMail').style.display = 'block';
+    document.getElementById('errorMail').innerHTML = 'Veuillez entrer une adresse mail valide !';
 
   }
   else if (regexMail.test(this.value) === true) {
-    document.getElementById('erreurMail').style.display = 'none';
+    document.getElementById('errorMail').style.display = 'none';
     this.style.border = 'unset';
     this.style.color = 'green';
 
   }
   else{
-    document.getElementById('erreurMail').style.display = 'none';
+    document.getElementById('errorMail').style.display = 'none';
   }
 
 });
@@ -100,17 +84,17 @@ document.getElementById("email").addEventListener("input", function(){
 document.getElementById("birthdate").addEventListener("input", function(){
   if (!this.value) {
     this.style.border = '3.2px solid red';
-    document.getElementById('erreurBirth').style.display = 'block';
-    document.getElementById('erreurBirth').innerHTML = 'Veuillez entrer une date !';
+    document.getElementById('errorBirth').style.display = 'block';
+    document.getElementById('errorBirth').innerHTML = 'Veuillez entrer une date !';
 
   }
   else if (this.value) {
-    document.getElementById('erreurBirth').style.display = 'none';
+    document.getElementById('errorBirth').style.display = 'none';
     this.style.border = 'unset';
 
   }
   else{
-    document.getElementById('erreurBirth').style.display = 'none';
+    document.getElementById('errorBirth').style.display = 'none';
   }
 
 });
@@ -119,18 +103,18 @@ document.getElementById("birthdate").addEventListener("input", function(){
 document.getElementById("quantity").addEventListener("input", function(){
   if (regexQuantity.test(this.value) === false) {
     this.style.color = 'red';
-    document.getElementById('erreurQuantity').style.display = 'block';
-    document.getElementById('erreurQuantity').innerHTML = 'Veuillez entrer une valeur numérique entre 1 et 100 !';
+    document.getElementById('errorQuantity').style.display = 'block';
+    document.getElementById('errorQuantity').innerHTML = 'Veuillez entrer une valeur numérique entre 1 et 100 !';
 
   }
   else if (regexQuantity.test(this.value) === true) {
-    document.getElementById('erreurQuantity').style.display = 'none';
+    document.getElementById('errorQuantity').style.display = 'none';
     this.style.border = 'unset';
     this.style.color = 'green';
 
   }
   else{
-    document.getElementById('erreurQuantity').style.display = 'none';
+    document.getElementById('errorQuantity').style.display = 'none';
   }
 
 });
@@ -170,7 +154,7 @@ document.forms["reserve"].addEventListener("submit", function(event) {
   
   if (!valid) {
       event.preventDefault();
-      document.getElementById('erreur').innerHTML = error;
+      document.getElementById('error').innerHTML = error;
       return false;
   }
   else {
