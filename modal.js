@@ -29,7 +29,7 @@ function launchModal() {
 
 // Déclaration expressions régulières à des fins de vérifications de champs
 const regexName = /^[a-zA-ZàâäèéêëîïôöùûüÿçæœÀÂÄÉÈÊËÎÏÔÖÙÛÜÇÆŒ'\-]{2,}$/;
-const regexMail = /^[a-z0-9.àâäèéêëîïôöùûüÿçæœ'\-_]+@[a-z0-9.\-_]{2,}\.[a-z]{2,4}$/;
+const regexMail = /^[a-zA-Z0-9.\-_]+@[a-z0-9.\-_]{2,}\.[a-z]{2,4}$/;
 const regexQuantity = /^([1-9][0-9]{0,1}|100)$/;
 
 //Validation des formats en input
@@ -51,7 +51,7 @@ const validateIdentity =  (inputName, errorField, errorMessage) => {
     }
     else{
       document.getElementById(errorField).style.display = 'none';
-      //errorName = ""; pour réinitialiser le contenu du message d'erreur
+      
     }
   
   });
@@ -142,7 +142,6 @@ document.forms["reserve"].addEventListener("submit", function(event) {
       valid = false;
   }
   
-
   for (let i = 0;  i < this.length; i++){
     if(!this[i].value){
         error = 'Veuillez renseigner tous les champs';
@@ -164,7 +163,6 @@ document.forms["reserve"].addEventListener("submit", function(event) {
       document.getElementById('formCloseContent').style.display = 'flex';  
   }
 });
-
 
 //Contournement afin d'éviter l'utilisation de span
 const crossClose = document.getElementById('formClose');
